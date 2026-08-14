@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Трансляция (открыть на iPhone)</title>
+<style>
+  body { margin:0; background:#000; color:#fff; font-family:sans-serif; text-align:center; }
+  #status { padding:12px; font-size:14px; }
+  video { width:100%; max-width:480px; background:#000; }
+</style>
+</head>
+<body>
+
+<div id="status">Подключение к камере...</div>
+<video id="localVideo" autoplay playsinline muted></video>
+
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+// ВАЖНО: придумайте своё уникальное имя комнаты (это как "адрес" трансляции).
+// Оно должно совпадать 1-в-1 в этом файле и в receive.html.
+const ROOM_ID = "moya-translyaciya-2026-zamenite-na-svoye-unikalnoe-imya";
+
+const statusEl = document.getElementById('status');
+const localVideo = document.getElementById('localVideo');
+let localStream;
+
+// 1. Запрашиваем камеру и микрофон
+navigator.mediaDevices.getUserMedia({
+  video: { facingMode: "environment" }, // задняя камера; поставьте "user" для фронтальной
+  audio: true
+})
+.then(stream => {
+  localStream = stream;
+  localVideo.srcObject = stream;
+  startPeer();
+})
+.catch(err => {
+  statusEl.textContent = "Ошибка доступа к камере: " + err.message +
+    " (проверьте, что страница открыта по HTTPS)";
+});
+
+// 2. Регистрируемся в сигналинг-сервисе под фиксированным именем комнаты
+function startPeer() {
+  const peer = new Peer(ROOM_ID);
+
+  peer.on('open', id => {
+    statusEl.textContent = "Ожидание подключения зрителя...";
+  });
+
+  // 3. Когда зритель "звонит" — отвечаем ему своим видео
+  peer.on('call', call => {
+    call.answer(localStream);
+    statusEl.textContent = "Зритель подключился, идёт трансляция";
+    call.on('close', () => {
+      statusEl.textContent = "Зритель отключился. Ожидание...";
+    });
+  });
+
+  peer.on('error', err => {
+    statusEl.textContent = "Ошибка соединения: " + err.type;
+    console.error(err);
+  });
+}
+</script>
+
+</body>
+</html>
