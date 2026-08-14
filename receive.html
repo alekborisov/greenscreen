@@ -56,8 +56,16 @@ const peer = new Peer();
 
 peer.on('open', () => {
   statusEl.textContent = "Звоним трансляции...";
-  const emptyStream = new MediaStream(); // нам не нужно отправлять своё видео
-  const call = peer.call(ROOM_ID, emptyStream);
+
+  // Технически WebRTC требует, чтобы у "звонящего" был хотя бы один трек
+  // в потоке, иначе договорённость (SDP) получится неполной и видео
+  // с другой стороны не придёт. Создаём крошечную заглушку без камеры.
+  const dummyCanvas = document.createElement('canvas');
+  dummyCanvas.width = 2;
+  dummyCanvas.height = 2;
+  const dummyStream = dummyCanvas.captureStream(1);
+
+  const call = peer.call(ROOM_ID, dummyStream);
 
   call.on('stream', stream => {
     statusEl.textContent = "Трансляция подключена";
