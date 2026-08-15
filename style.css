@@ -1,0 +1,321 @@
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #00b140;
+    overflow-x: hidden;
+  }
+
+  /* фоновая png-картинка вешается прямо на body, без лишнего div-контейнера.
+     Показывается в своем естественном размере (без background-size),
+     центрируется по горизонтали и прижимается к верхнему краю -
+     ровно по той же оси, что и .page (оба центрируются относительно
+     одной и той же ширины окна). Если окно уже картинки - она просто
+     обрежется по краям, без горизонтального скролла (см. overflow-x выше). */
+  body {
+    background-image: url('content/imgs/greenscreen-fon_1440x1130.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+  }
+
+  /* содержимое страницы */
+  .page {
+    position: relative;
+    width: 900px;
+    margin: 0 auto;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+  /* ===== группа 1: текстовые ссылки внутри текстовых блоков ===== */
+  /* до наведения - серый (отличается от зеленого текста абзаца),
+     наведение - зеленый, клик - белая вспышка,
+     после перехода - возвращается в исходный серый */
+
+  a.link-text:link {
+    color: #737373;
+    }
+
+  a.link-text:visited {
+    color: #737373;
+    }
+
+  a.link-text:hover {
+    color: #00b140;
+    }
+
+  a.link-text:active {
+    color: #00cc00;
+    }
+
+  /* ===== группа 2: текстовые ссылки в меню ===== */
+  /* до наведения - зеленый (как остальные пункты меню),
+     наведение - белый, клик - серая вспышка,
+     после перехода - возвращается в исходный зеленый */
+
+  a.link-menu:link {
+    color: #00b140;
+    }
+
+  a.link-menu:visited {
+    color: #00b140;
+    }
+
+  a.link-menu:hover {
+    color: #00ff00;
+    }
+
+  a.link-menu:active {
+    color: #99ff66;
+    }
+
+  /* пункт меню текущей страницы - постоянно "подсвечен",
+     тем же цветом, что и hover. Класс current добавляется
+     вручную в html того пункта, который соответствует
+     открытой странице. Стоит ниже правил :link/:visited/:hover/:active,
+     поэтому при равной специфичности побеждает именно он. */
+  a.link-menu.current {
+    color: #00ff00;
+    }
+
+  /* ===== группа 3: ссылки-иконки в меню (соцсети) ===== */
+  /* при наведении подменяется картинка на файл другого цвета -
+     через два <img> внутри ссылки, переключаемые по :hover.
+     Второй файл (icon-hover) нужно подготовить отдельно для
+     каждой иконки - тот же размер, другой цвет. */
+
+  /* ===== переключение картинки по наведению (иконки соцсетей + лого) ===== */
+  /* внутри ссылки два <img> - icon-default и icon-hover,
+     CSS показывает нужный в зависимости от наведения курсора */
+
+  .social-cell a,
+  .logo-cell a {
+   display: block;
+   width: 100%;
+   height: 100%;
+  }
+
+  .icon-default {
+   display: block;
+  }
+
+  a .icon-hover {
+   display: none;
+  }
+
+  a:hover .icon-default {
+   display: none;
+  }
+
+  a:hover .icon-hover {
+   display: block;
+  }
+
+  /* верхний отступ страницы */
+  .top-space {
+    height: 60px;
+  }
+
+  /* черная плашка меню */
+  .menu-bar {
+    width: 900px;
+    height: 60px;
+    background-color: #000000;
+    position: relative;
+  }
+
+  /* контейнер под логотип, прозрачный, с отступом 2px от левого края */
+  .logo-cell {
+    width: 146px;
+    height: 56px;
+    background-color: transparent;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+  }
+
+  /* обертка для кнопок меню и соцсетей, прижата вправо */
+  .menu-right {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 60px;
+  }
+
+  .menu-item {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    color: #00b140;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 0px 20px;
+    text-decoration: none;
+  }
+
+  /* прозрачные ячейки под иконки соцсетей */
+  .social-cell {
+    float: left;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+  }
+
+  /* пустое пространство между соцсетями и краем плашки */
+  .menu-end-space {
+    float: left;
+    width: 2px;
+    height: 60px;
+  }
+
+  /* отступ между меню и черным полем с текстом */
+  .space-menu-to-text {
+    height: 120px;
+  }
+
+  /* черное поле с текстом */
+  .text-box {
+    width: 900px;
+    height: 450px;
+    background-color: #000000;
+  }
+
+  .text-inner {
+    width: 780px;
+    height: 530px;
+    padding: 60px;
+    color: #00b140;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    overflow: hidden;
+  }
+
+  .viveo-inner {
+    width: 900px;
+    height: 450px;
+    padding: 0px;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    overflow: hidden;
+  }
+
+  .text-inner .paragraph {
+    margin: 0px 0px 16px 0px;
+  }
+
+  .text-inner .paragraph:last-child {
+    margin-bottom: 0px;
+  }
+
+  /* отступ перед сеткой */
+  .space-text-to-grid {
+    height: 30px;
+  }
+
+  /* сетка ячеек */
+  .grid {
+    width: 900px;
+    height: 1200px;
+  }
+
+  .grid-row {
+    width: 900px;
+    height: 400px;
+  }
+
+  .grid-cell {
+    width: 300px;
+    height: 400px;
+    float: left;
+    background-color: #000000;
+    box-sizing: border-box;
+    border: 1px solid #00b140;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* отступ перед нижней плашкой */
+  .space-grid-to-footer {
+    height: 120px;
+  }
+
+  /* нижняя черная плашка */
+  .footer-bar {
+    width: 900px;
+    height: 60px;
+    background-color: #000000;
+    position: relative;
+  }
+
+  .footer-text {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    height: 60px;
+    line-height: 60px;
+    color: #00b140;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  /* нижний отступ страницы */
+  .bottom-space {
+    height: 60px;
+  }
+
+    /* ===== зеленое окно видео + подписи над/под ним (страницы с видео) ===== */
+    /* .viveo-inner получает position:relative, чтобы служить
+       системой координат для окна видео и подписей внутри себя -
+       это единственное изменение существующего правила, задействовано
+       только на страницах с видео, на остальные не влияет */
+    .viveo-inner {
+      position: relative;
+    }
+
+    /* зеленое окно 587x330 по центру черного поля 900x450:
+       156px слева, 157px справа, 60px сверху и снизу */
+    .video-window {
+      position: absolute;
+      top: 60px;
+      left: 156px;
+      width: 587px;
+      height: 330px;
+      background-color: #00b140;
+    }
+
+    /* невидимые поля-контейнеры под текст 587x40,
+       той же ширины и по той же горизонтали, что и зеленое окно.
+       Текст внутри центрируется и по горизонтали, и по вертикали -
+       поэтому отступы сверху и снизу от текста получаются одинаковыми
+       автоматически, независимо от длины будущего текста. */
+    .video-caption {
+      position: absolute;
+      left: 156px;
+      width: 587px;
+      height: 40px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #00b140;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    /* верхнее поле - по центру верхнего 60px-зазора (10px отступ сверху и снизу) */
+    .video-caption-top {
+      top: 10px;
+    }
+
+    /* нижнее поле - по центру нижнего 60px-зазора (10px отступ сверху и снизу) */
+    .video-caption-bottom {
+      top: 400px;
+    }
