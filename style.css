@@ -114,6 +114,18 @@
    display: block;
   }
 
+  .highlight-grey {
+  color: #737373;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
   /* верхний отступ страницы */
   .top-space {
     height: 60px;
