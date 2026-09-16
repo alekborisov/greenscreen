@@ -116,7 +116,14 @@ a:hover .icon-hover {
  display: block;
 }
 
-a.link-highlight {
+a.link-highlight:link {
+  background-color: #00b140;
+  color: #000000;
+  padding: 2px 4px;
+  text-decoration: none;
+}
+
+a.link-highlight:visited {
   background-color: #00b140;
   color: #000000;
   padding: 2px 4px;
@@ -125,6 +132,55 @@ a.link-highlight {
 
 a.link-highlight:hover {
   background-color: #00d140;
+}
+
+a.link-highlight:active {
+  background-color: #00b140;
+}
+
+.subscribe-form-inline {
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.subscribe-input-inline {
+  height: 28px;
+  width: 220px;
+  background-color: transparent;
+  border: 1px solid #00b140;
+  border-radius: 0;
+  color: #00b140;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.subscribe-input-inline::placeholder {
+  color: #737373;
+}
+
+.subscribe-button-inline {
+  height: 28px;
+  padding: 0 16px;
+  background-color: #00b140;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.subscribe-button-inline:hover {
+  background-color: #00d140;
+}
+
+.subscribe-button-inline:active {
+  background-color: #00b140;
 }
 
 .highlight-grey {
