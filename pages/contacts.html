@@ -58,7 +58,21 @@
 
       <div class="paragraph"><span class="bold ">Email:</span> <a href="mailto:greenscreen.gallery@proton.me" class="link-text">greenscreen.gallery@proton.me</a></div>
 
-      <div class="paragraph"><span class="bold ">Donation:</span> <span class="highlight-grey">PayPal / Kaspi / T-Bank</span></div>
+      <div class="paragraph">
+       <a href="https://buttondown.com/greenscreen" class="link-highlight" id="subscribe-toggle-btn">Subscribe to our newsletter</a>
+       <form
+       action="https://buttondown.com/api/emails/embed-subscribe/greenscreen"
+       method="post"
+       target="popupwindow"
+       onsubmit="window.open('https://buttondown.com/greenscreen', 'popupwindow')"
+       class="subscribe-form-inline"
+       id="subscribe-form"
+      >
+       <input type="email" name="email" class="subscribe-input-inline" placeholder="your@email.com" required>
+       <input type="hidden" value="1" name="embed">
+       <button type="submit" class="subscribe-button-inline">Subscribe</button>
+      </form>
+     </div>
     </div>
   </div>
 
@@ -71,6 +85,14 @@
   <div class="bottom-space"></div>
 
 </div>
+
+<script>
+  document.getElementById('subscribe-toggle-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('subscribe-form').style.display = 'flex';
+  });
+</script>
 
 </body>
 </html>
