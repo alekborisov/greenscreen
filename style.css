@@ -428,6 +428,37 @@ color: #737373;
   top: 400px;
 }
 
+/* ===== ГИБКИЙ ТЕКСТОВЫЙ БЛОК (черное поле без фиксированной высоты) ===== */
+/* Для страниц выставок - текст под видео-блоком, перед сеткой
+   (или перед футером, если сетки на странице нет). В отличие от
+   .text-box/.text-image-box высота НЕ задана и нет overflow:hidden -
+   блок сам растягивается под любой объем текста, поэтому не нужно
+   прописывать новый стиль высоты под каждую страницу отдельно.
+   Ширина и паддинг - те же 900/780+60, что и везде на сайте. */
+
+.text-flex-box {
+  width: 900px;
+  background-color: #000000;
+}
+
+.text-flex-inner {
+  width: 780px;
+  padding: 60px;
+  color: #00b140;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: transparent;
+}
+
+.text-flex-inner .paragraph {
+  margin: 0px 0px 16px 0px;
+}
+
+.text-flex-inner .paragraph:last-child {
+  margin-bottom: 0px;
+}
+
 /* отступ перед сеткой */
 .space-text-to-grid {
   height: 30px;
